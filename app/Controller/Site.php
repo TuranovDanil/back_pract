@@ -7,6 +7,8 @@ use Src\View;
 use Src\Request;
 use Model\User;
 use Src\Auth\Auth;
+use Model\Discipline;
+use Model\Division;
 
 class Site
 {
@@ -16,9 +18,11 @@ class Site
         return (new View())->render('site.post', ['posts' => $posts]);
     }
 
-    public function hello(): string
+    public function discipline(Request $request): string
     {
-        return new View('site.hello', ['message' => 'hello working']);
+        $divisions = Division::all();
+        $discipline = Discipline::all();
+        return new View('site.discipline', ['discipline' => $discipline, 'divisions' => $divisions]);
     }
 
     public function signup(Request $request): string
