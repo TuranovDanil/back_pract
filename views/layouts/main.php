@@ -15,12 +15,15 @@
 <body>
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="nav-link text-light" href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
+        <a class="nav-link text-light" href="<?= app()->route->getUrl('/discipline') ?>">Дисциплины</a>
+        <a class="nav-link text-light" href="<?= app()->route->getUrl('/workers') ?>">Сотрудники</a>
+        <a class="nav-link text-light" href="<?= app()->route->getUrl('/moder') ?>">Moder</a>
+        <a class="nav-link text-light" href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
         <?php
         if (!app()->auth::check()):
             ?>
             <a class="nav-link text-light" href="<?= app()->route->getUrl('/login') ?>">Вход</a>
-            <a class="nav-link text-light" href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+
         <?php
         else:
             ?>

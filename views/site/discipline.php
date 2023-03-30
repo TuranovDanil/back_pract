@@ -1,13 +1,15 @@
-<div>
+<h5 class="text-dark">Подразделения</h5>
+<div class="d-flex  flex-wrap">
 <?php
 foreach ($divisions as $division){
-    echo '<div class="form-check">' . '<label>';
+    echo '<div class="form-check px-4">' . '<label>';
     echo '<input class="form-check-input" type="checkbox" value="">';
     echo $division->name . '</label>';
     echo '</div>';
 }
 ?>
 </div>
+<h5 class="text-dark">Дисциплины</h5>
 <div class="d-flex justify-content-between flex-wrap">
     <?php
     foreach ($discipline as $dis) {
