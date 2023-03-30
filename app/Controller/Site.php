@@ -9,6 +9,8 @@ use Model\User;
 use Src\Auth\Auth;
 use Model\Discipline;
 use Model\Division;
+use Model\Position;
+use Model\Sex;
 
 class Site
 {
@@ -27,10 +29,13 @@ class Site
 
     public function signup(Request $request): string
     {
+        $divisions = Division::all();
+        $positions = Position::all();
+        $sexes = Sex::all();
         if ($request->method==='POST' && User::create($request->all())){
             app()->route->redirect('/discipline');
         }
-        return new View('site.signup');
+        return new View('site.signup', ['positions' => $positions, 'divisions' => $divisions, 'sexes' => $sexes]);
     }
 
     public function login(Request $request): string
