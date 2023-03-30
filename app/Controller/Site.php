@@ -60,8 +60,9 @@ class Site
 
     public function workers(Request $request): string
     {
+        $users = User::all();
         $divisions = Division::all();
-        return new View('site.workers', ['divisions' => $divisions]);
+        return new View('site.workers', ['divisions' => $divisions, 'users' => $users]);
     }
 
     public function moder(): string

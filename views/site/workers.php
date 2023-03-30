@@ -11,41 +11,19 @@
 </div>
 <h5 class="text-dark">Работники</h5>
 <div class="d-flex justify-content-between flex-wrap">
+    <?php
+    foreach ($users as $user){
+        echo '<div class="card" style="width: 18rem;">' . '<div class="card-body">';
+        echo '<h5 class="card-title mb-2 text-muted">фамилия: ' . $user->surname . '</h5>';
+        echo '<h6 class="card-title mb-2 text-dark"">имя: ' . $user->name . '</h6>';
+        echo '<h6 class="card-title mb-2 text-muted">отчество: ' . $user->patronymic . '</h6>';
+        echo '<h6 class="card-title mb-2 text-dark">пол: ' . $user->id_sex . '</h6>';
+        echo '<h6 class="card-title mb-2 text-muted"">дата рождения: ' . $user->birth . '</h6>';
+        echo '<h6 class="card-title mb-2 text-dark">адрес: ' . $user->address . '</h6>';
+        echo '<h6 class="card-title mb-2 text-muted"">должность: ' . $user->id_position . '</h6>';
+        echo '<h6 class="card-title mb-2 text-dark">подразделение: ' . $user->id_division . '</h6>';
+        echo '</div>' . '</div>';
+    }
+    ?>
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">фамилия</h5>
-            <h6 class="card-subtitle mb-2 text-muted">имя</h6>
-            <h6 class="card-subtitle mb-2 text-dark">отчество</h6>
-            <h6 class="card-subtitle mb-2 text-muted">пол</h6>
-            <h6 class="card-subtitle mb-2 text-dark">дата рождения</h6>
-            <h6 class="card-subtitle mb-2 text-muted">адрес</h6>
-            <h6 class="card-subtitle mb-2 text-dark">должность</h6>
-            <h6 class="card-subtitle mb-2 text-muted">подразделение</h6>
-        </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">фамилия</h5>
-            <h6 class="card-subtitle mb-2 text-muted">имя</h6>
-            <h6 class="card-subtitle mb-2 text-dark">отчество</h6>
-            <h6 class="card-subtitle mb-2 text-muted">пол</h6>
-            <h6 class="card-subtitle mb-2 text-dark">дата рождения</h6>
-            <h6 class="card-subtitle mb-2 text-muted">адрес</h6>
-            <h6 class="card-subtitle mb-2 text-dark">должность</h6>
-            <h6 class="card-subtitle mb-2 text-muted">подразделение</h6>
-        </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">фамилия</h5>
-            <h6 class="card-subtitle mb-2 text-muted">имя</h6>
-            <h6 class="card-subtitle mb-2 text-dark">отчество</h6>
-            <h6 class="card-subtitle mb-2 text-muted">пол</h6>
-            <h6 class="card-subtitle mb-2 text-dark">дата рождения</h6>
-            <h6 class="card-subtitle mb-2 text-muted">адрес</h6>
-            <h6 class="card-subtitle mb-2 text-dark">должность</h6>
-            <h6 class="card-subtitle mb-2 text-muted">подразделение</h6>
-        </div>
-    </div>
 </div>

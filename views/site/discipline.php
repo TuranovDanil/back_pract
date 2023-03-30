@@ -8,7 +8,11 @@ foreach ($divisions as $division){
     echo '</div>';
 }
 ?>
-</div>
+    <div class="input-group rounded">
+        <input type="search" class="form-control rounded" placeholder="Сотрудник" aria-label="Search" aria-describedby="search-addon" />
+        <button>Найти</button>
+  </span>
+    </div>
 <h5 class="text-dark">Дисциплины</h5>
 <div class="d-flex justify-content-between flex-wrap">
     <?php
