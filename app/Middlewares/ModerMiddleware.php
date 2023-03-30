@@ -9,7 +9,7 @@ class ModerMiddleware
 {
     public function handle(Request $request)
     {
-        if (Auth::check() || !Auth::user()->isModer() && Auth::check() && !Auth::user()->isAdmin()) {
+        if (Auth::check() && Auth::user()->isWorker()) {
             app()->route->redirect('/discipline');
         }
     }

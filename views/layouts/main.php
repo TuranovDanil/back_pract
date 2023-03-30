@@ -15,10 +15,6 @@
 <body>
 <header>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="nav-link text-light" href="<?= app()->route->getUrl('/discipline') ?>">Дисциплины</a>
-        <a class="nav-link text-light" href="<?= app()->route->getUrl('/workers') ?>">Сотрудники</a>
-        <a class="nav-link text-light" href="<?= app()->route->getUrl('/moder') ?>">Moder</a>
-        <a class="nav-link text-light" href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
         <?php
         if (!app()->auth::check()):
             ?>
@@ -27,10 +23,26 @@
         <?php
         else:
             ?>
-            <a class="nav-link text-light" href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->name ?>)</a>
+            <a class="nav-link text-light" href="<?= app()->route->getUrl('/discipline') ?>">Дисциплины</a>
+            <a class="nav-link text-light" href="<?= app()->route->getUrl('/workers') ?>">Сотрудники</a>
+            <?php
+            if (app()->auth::user()->role == 'moder' || app()->auth::user()->role == 'admin'):
+                ?>
+                <a class="nav-link text-light" href="<?= app()->route->getUrl('/moder') ?>">Moder</a>
+            <?php
+            endif;
+            if (app()->auth::user()->role == 'admin'):
+                ?>
+                <a class="nav-link text-light" href="<?= app()->route->getUrl('/signup') ?>">Sign Up</a>
+            <?php
+            endif;
+            ?>
+            <a class="nav-link text-light" href="<?= app()->route->getUrl('/logout') ?>">Выход
+                (<?= app()->auth::user()->name ?>)</a>
         <?php
         endif;
         ?>
+
     </nav>
 </header>
 <main>
