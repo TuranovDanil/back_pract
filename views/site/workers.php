@@ -22,6 +22,7 @@
         echo '<h6 class="card-title mb-2 text-dark">адрес: ' . $user->address . '</h6>';
         echo '<h6 class="card-title mb-2 text-muted"">должность: ' . $user->id_position . '</h6>';
         echo '<h6 class="card-title mb-2 text-dark">подразделение: ' . $user->id_division . '</h6>';
+        echo '<button class="btn btn-dark">Изменить</button>' . '<button class="btn btn-dark">Удалить</button>';
         echo '</div>' . '</div>';
     }
     ?>

@@ -19,6 +19,7 @@ foreach ($divisions as $division){
     foreach ($discipline as $dis) {
         echo '<div class="card" style="width: 18rem;">' . '<div class="card-body">';
         echo '<h5 class="card-title">' . $dis->id . ' | ' . $dis->name . '</h5>';
+        echo '<button class="btn btn-dark">Изменить</button>' . '<button class="btn btn-dark">Удалить</button>';
         echo '</div>' . '</div>';
     }
     ?>
