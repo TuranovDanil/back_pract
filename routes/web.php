@@ -12,4 +12,7 @@ Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->mi
 Route::group('/moder', function (){
     Route::add(['GET', 'POST'], '/moder', [Controller\Moder::class, 'moder'])->middleware('auth','moder');
     Route::add(['GET', 'POST'], '/add-discipline', [Controller\Moder::class, 'addDiscipline'])->middleware('auth','moder');
+    Route::add(['GET', 'POST'], '/add-division', [Controller\Moder::class, 'addDivision'])->middleware('auth','moder');
+    Route::add(['GET', 'POST'], '/add-type', [Controller\Moder::class, 'addType'])->middleware('auth','moder');
+    Route::add(['GET', 'POST'], '/add-position', [Controller\Moder::class, 'addPosition'])->middleware('auth','moder');
 });
