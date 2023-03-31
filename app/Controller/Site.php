@@ -16,8 +16,10 @@ class Site
 {
     public function discipline(Request $request): string
     {
+
         $divisions = Division::all();
         $discipline = Discipline::all();
+//        $discipline = Discipline::where('id', $request->id ?? 0)->get();
         return new View('site.discipline', ['discipline' => $discipline, 'divisions' => $divisions]);
     }
 
