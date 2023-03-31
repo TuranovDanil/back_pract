@@ -15,6 +15,7 @@ return [
     ],
     'routeAppMiddleware' => [
         'trim' => \Middlewares\TrimMiddleware::class,
+        'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
     ],
 
 ];
