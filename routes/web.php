@@ -1,8 +1,11 @@
 <?php
 
 use Src\Route;
+Route::group('/discipline', function (){
+    Route::add(['GET', 'POST'], '/discipline', [Controller\Site::class, 'discipline'])->middleware('auth');
+//    Route::add(['GET', 'POST'], '/filter', [Controller\Site::class, 'filter'])->middleware('auth');
+});
 
-Route::add(['GET', 'POST'], '/discipline', [Controller\Site::class, 'discipline'])->middleware('auth');
 Route::add(['GET', 'POST'], '/signup', [Controller\Admin::class, 'signup'])->middleware('auth', 'admin');
 Route::add(['GET', 'POST'], '/login', [Controller\Authentication::class, 'login']);
 Route::add('GET', '/logout', [Controller\Authentication::class, 'logout']);
