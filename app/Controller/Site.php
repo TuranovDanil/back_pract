@@ -49,7 +49,7 @@ class Site
         $divisions = Division::all();
         $users = DB::table('users')
             ->join('divisions', 'users.id_division', '=', 'divisions.id')
-            ->select('users.*')->where('divisions.id', '=', $request->id)->get();
+            ->select('users.*')->whereIn('divisions.id', [1, 2])->get();
         return new View('site.workers', ['divisions' => $divisions, 'users' => $users]);
     }
 
