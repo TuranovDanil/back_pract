@@ -50,6 +50,35 @@ class Site
         return new View('site.discipline', ['discipline' => $discipline, 'divisions' => $divisions]);
     }
 
+    public function dis($id, Request $request): string
+    {
+        $dis = Discipline::query()->find($id);
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'name' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+            ]);
+            if ($validator->fails()) {
+                return new View('site.dis',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'dis' => $dis]);
+            } else {
+                $data = $request->all();
+                $dis->name = $data['name'];
+
+                $dis->save();
+                app()->route->redirect('/discipline');
+            }
+        }
+        return new View('site.dis', ['dis' => $dis]);
+    }
+
+    public function disDelete($id): string
+    {
+        Discipline::find($id)->delete();
+        app()->route->redirect('/discipline');
+    }
+
 
     public function workers(Request $request): string
     {
@@ -67,11 +96,6 @@ class Site
         return new View('site.workers', ['divisions' => $divisions, 'users' => $users]);
     }
 
-//    public function worker($id): string
-//    {
-//        $user = User::query()->find($id);
-//        return new View('site.worker', ['user' => $user]);
-//    }
 
     public function worker($id, Request $request): string
     {

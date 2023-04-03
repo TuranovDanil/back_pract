@@ -30,7 +30,7 @@
     foreach ($discipline as $dis) {
         echo '<div class="card" style="width: 18rem;">' . '<div class="card-body">';
         echo '<h5 class="card-title">' . $dis->id . ' | ' . $dis->name . '</h5>';
-        echo '<button class="btn btn-dark">Изменить</button>' . '<button class="btn btn-dark">Удалить</button>';
+        echo "<a href=/pop-it-mvc/dis/{$dis->id}><button class='btn btn-dark'>Подробнее</button></a>";
         echo '</div>' . '</div>';
     }
     ?>

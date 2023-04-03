@@ -13,9 +13,8 @@
     echo '<h6 class="card-title mb-2 text-dark">подразделение: ' . $user->id_division . '</h6>';
     echo "<a href=/pop-it-mvc/worker/{$user->id}/delete><button class='btn btn-dark'>Удалить</button></a>";
     echo '</div>' . '</div>';
-    //    }
     ?>
-<!--    <a href="/pop-it-mvc/worker/{$user->id}/delete"><button class="btn btn-dark">Удалить</button></a>-->
+
 </div>
 <h2>Редактирование</h2>
 <h3><?= $message ?? ''; ?></h3>
