@@ -9,16 +9,16 @@ Route::add('GET', '/logout', [Controller\Authentication::class, 'logout']);
 
 Route::add(['GET', 'POST'], '/discipline', [Controller\Site::class, 'discipline'])->middleware('auth');
 Route::group('/dis', function (){
-    Route::add(['GET', 'POST'], '/dis/{id}', [Controller\Site::class, 'dis'])->middleware('auth');
-    Route::add(['GET', 'POST'], '/dis/{id}/delete', [Controller\Site::class, 'disDelete'])->middleware('auth');
+    Route::add(['GET', 'POST'], '/dis/{id}', [Controller\Site::class, 'dis'])->middleware('auth', 'moder');
+    Route::add(['GET', 'POST'], '/dis/{id}/delete', [Controller\Site::class, 'disDelete'])->middleware('auth', 'moder');
 });
 
 Route::group('/workers', function (){
     Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->middleware('auth');
 });
 Route::group('/worker', function (){
-    Route::add(['GET', 'POST'], '/worker/{id}', [Controller\Site::class, 'worker'])->middleware('auth');
-    Route::add(['GET', 'POST'], '/worker/{id}/delete', [Controller\Site::class, 'workerDelete'])->middleware('auth');
+    Route::add(['GET', 'POST'], '/worker/{id}', [Controller\Site::class, 'worker'])->middleware('auth', 'moder');
+    Route::add(['GET', 'POST'], '/worker/{id}/delete', [Controller\Site::class, 'workerDelete'])->middleware('auth', 'moder');
 });
 
 

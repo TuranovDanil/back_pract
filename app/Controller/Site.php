@@ -121,6 +121,9 @@ class Site
                 $data = $request->all();
                 $user->name = $data['name'];
                 $user->surname = $data['surname'];
+                $user->id_position = $data['id_position'];
+                $user->id_division= $data['id_division'];
+                $user->role = $data['role'];
                 $user->save();
                 app()->route->redirect('/workers');
             }
