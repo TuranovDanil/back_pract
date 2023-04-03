@@ -8,7 +8,16 @@ Route::add(['GET', 'POST'], '/login', [Controller\Authentication::class, 'login'
 Route::add('GET', '/logout', [Controller\Authentication::class, 'logout']);
 
 Route::add(['GET', 'POST'], '/discipline', [Controller\Site::class, 'discipline'])->middleware('auth');
-Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->middleware('auth');
+
+Route::group('/workers', function (){
+    Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->middleware('auth');
+});
+Route::group('/worker', function (){
+    Route::add(['GET', 'POST'], '/worker/{id}', [Controller\Site::class, 'worker'])->middleware('auth');
+    Route::add(['GET', 'POST'], '/worker/{id}/delete', [Controller\Site::class, 'workerDelete'])->middleware('auth');
+});
+
+
 
 Route::group('/moder', function (){
     Route::add(['GET', 'POST'], '/moder', [Controller\Moder::class, 'moder'])->middleware('auth','moder');
