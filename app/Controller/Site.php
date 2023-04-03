@@ -32,6 +32,12 @@ class Site
                 ->join('divisions', 'users.id_division', '=', 'divisions.id')
                 ->select('disciplines.*')->whereIn('divisions.id', $data["filter"])->get();
         }
+        if (isset($data["search"])){
+            $discipline = DB::table('disciplines')
+                ->join('worker_disciplines', 'disciplines.id', '=', 'worker_disciplines.id_discipline')
+                ->join('users', 'worker_disciplines.id_worker', '=', 'users.id')
+                ->select('disciplines.*')->where('users.name', '=', $data["search"])->get();
+        }
         return new View('site.discipline', ['discipline' => $discipline, 'divisions' => $divisions]);
     }
 

@@ -21,10 +21,10 @@ class Moder
         $discipline = Discipline::all();
         $types = Type::all();
         if ($request->method === 'POST' && WorkerDiscipline::create($request->all())){
-            app()->route->redirect('/workers');
+            app()->route->redirect('/discipline');
         }
         if ($request->method === 'POST' && Division::create($request->all())){
-            app()->route->redirect('/workers');
+            app()->route->redirect('/discipline');
         }
         return new View('site.moder', ['users' => $users, 'discipline' => $discipline, 'types' => $types]);
     }

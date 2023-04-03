@@ -11,7 +11,7 @@
         ?>
         <button class="btn btn-dark">Найти</button>
     </form>
-    <form action="/pop-it-mvc/discipline/search">
+    <form >
     <div class="input-group rounded">
         <input name="search" type="search" class="form-control rounded" placeholder="Сотрудник" aria-label="Search"
                aria-describedby="search-addon"/>
