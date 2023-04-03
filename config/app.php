@@ -18,5 +18,8 @@ return [
         'trim' => \Middlewares\TrimMiddleware::class,
         'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
     ],
+    'aliases' => [
+        'Image' => Intervention\Image\Facades\Image::class,
+    ]
 
 ];

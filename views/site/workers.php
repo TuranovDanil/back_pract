@@ -27,11 +27,12 @@
         echo '<h6 class="card-title mb-2 text-dark">адрес: ' . $user->address . '</h6>';
         echo '<h6 class="card-title mb-2 text-muted"">должность: ' . $user->id_position . '</h6>';
         echo '<h6 class="card-title mb-2 text-dark">подразделение: ' . $user->id_division . '</h6>';
+        echo $user->avatar;
         if (app()->auth::user()->role == 'moder' || app()->auth::user()->role == 'admin') {
             echo "<a href=/pop-it-mvc/worker/{$user->id}><button class='btn btn-dark'>Подробнее</button></a>";
         }
         echo '</div>' . '</div>';
     }
     ?>
-
+<img src="">
 </div>

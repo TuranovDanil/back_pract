@@ -5,6 +5,7 @@ namespace Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Src\Auth\IdentityInterface;
+use function FileWork\fileWork;
 
 class User extends Model implements IdentityInterface
 {
@@ -22,7 +23,8 @@ class User extends Model implements IdentityInterface
         'address',
         'id_position',
         'id_division',
-        'role'
+        'role',
+        'avatar'
     ];
 
     protected static function booted()
@@ -74,6 +76,13 @@ class User extends Model implements IdentityInterface
             return true;
         }
         return false;
+    }
+
+    public static function getAvatarUrl()
+    {
+        $avatarUrl=DB::selectOne('select avatar_url from users where id= ?',[app()->auth::user()->id]);
+        $avatarUrl=((array) $avatarUrl)['avatar_url'];
+        return $avatarUrl;
     }
 
 }

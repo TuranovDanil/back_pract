@@ -11,6 +11,8 @@ use Model\User;
 use Model\WorkerDiscipline;
 use Src\Validator\Validator;
 use Src\View;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Moder
 {
@@ -45,6 +47,8 @@ class Moder
             if (Discipline::create($request->all())) {
                 app()->route->redirect('/discipline');
             }
+
+
         }
         return (new View('site.moder'));
     }

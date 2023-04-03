@@ -68,5 +68,9 @@
     <div class="form-group">
         <label>Пароль <input type="password" name="password" class="form-control"></label>
     </div>
+    <div class="form-floating mb-3" bis_skin_checked="1">
+        <p>Добавить аватар</p>
+        <input type="file" name="avatar">
+    </div>
     <button class="btn btn-dark">Зарегистрироваться</button>
 </form>

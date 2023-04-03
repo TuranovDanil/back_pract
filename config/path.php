@@ -5,5 +5,6 @@ return [
     //настройка директории с маршрутами
     'routes' => 'routes',
     //настройка директории с представлениями
-    'views' => 'views'
+    'views' => 'views',
+    'files' => 'public/uploads'
 ];
