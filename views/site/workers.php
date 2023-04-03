@@ -1,14 +1,19 @@
 <h5 class="text-dark">Подразделения</h5>
-<div class="d-flex  flex-wrap">
+<div class="d-flex  flex-wrap ">
+    <form >
+
     <?php
     foreach ($divisions as $division){
         echo '<div class="form-check  px-4">' . '<label>';
-        echo '<input class="form-check-input" type="checkbox" value="">';
+        echo "<input class='form-check-input' name='filter[]' type='checkbox' value=\"$division->id\">";
         echo $division->name . '</label>';
         echo '</div>';
     }
     ?>
+    <button class="btn btn-dark">Найти</button>
+    </form>
 </div>
+<a class="btn btn-dark" href="<?= app()->route->getUrl('/workers') ?>">Сбросить</a>
 <h5 class="text-dark">Работники</h5>
 <div class="d-flex justify-content-between flex-wrap">
     <?php

@@ -3,14 +3,20 @@
 use Src\Route;
 Route::group('/discipline', function (){
     Route::add(['GET', 'POST'], '/discipline', [Controller\Site::class, 'discipline'])->middleware('auth');
-//    Route::add(['GET', 'POST'], '/filter', [Controller\Site::class, 'filter'])->middleware('auth');
+    Route::add(['GET', 'POST'], '/filter-discipline', [Controller\Site::class, 'filterDiscipline'])->middleware('auth');
+    Route::add(['GET', 'POST'], '/search', [Controller\Site::class, 'search'])->middleware('auth');
 });
 
 Route::add(['GET', 'POST'], '/signup', [Controller\Admin::class, 'signup'])->middleware('auth', 'admin');
 Route::add(['GET', 'POST'], '/login', [Controller\Authentication::class, 'login']);
 Route::add('GET', '/logout', [Controller\Authentication::class, 'logout']);
 
-Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->middleware('auth');;
+//Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->middleware('auth');
+//Route::add(['GET', 'POST'], '/filter-workers', [Controller\Site::class, 'filterWorkers'])->middleware('auth');;
+Route::group('/workers', function (){
+    Route::add(['GET', 'POST'], '/workers', [Controller\Site::class, 'workers'])->middleware('auth');
+    Route::add(['GET', 'POST'], '/filter-workers', [Controller\Site::class, 'filterWorkers'])->middleware('auth');
+});
 
 Route::group('/moder', function (){
     Route::add(['GET', 'POST'], '/moder', [Controller\Moder::class, 'moder'])->middleware('auth','moder');
