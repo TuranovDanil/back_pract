@@ -1,6 +1,6 @@
 <h5 class="text-dark">Подразделения</h5>
 <div class="d-flex  flex-wrap">
-    <form action="/pop-it-mvc/discipline/filter-discipline" >
+    <form  >
         <?php
         foreach ($divisions as $division){
             echo '<div class="form-check  px-4">' . '<label>';
