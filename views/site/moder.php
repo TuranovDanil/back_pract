@@ -31,11 +31,14 @@
         <button class="btn btn-dark">Добавить</button>
     </form>
 
-    <form action="/pop-it-mvc/moder/add-discipline" method="post">
+    <form action="/pop-it-mvc/moder/add-discipline" method="post" enctype="multipart/form-data">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <h5 class="text-dark">Дисциплина</h5>
         <div class="form-group">
             <label>Название <input type="text" name="name" class="form-control"></label>
+        </div>
+        <div class="form-group">
+            <label>Изображение <input type="file" name="image" class="form-control"></label>
         </div>
         <button class="btn btn-dark">Добавить</button>
     </form>

@@ -2,9 +2,11 @@
 
 namespace Controller;
 
+use Illuminate\Database\Capsule\Manager as DB;
 use Model\Division;
 use Model\Position;
 use Model\Type;
+use Src\FileUploader;
 use Src\Request;
 use Model\Discipline;
 use Model\User;
@@ -22,10 +24,10 @@ class Moder
         $users = User::all();
         $discipline = Discipline::all();
         $types = Type::all();
-        if ($request->method === 'POST' && WorkerDiscipline::create($request->all())){
+        if ($request->method === 'POST' && WorkerDiscipline::create($request->all())) {
             app()->route->redirect('/discipline');
         }
-        if ($request->method === 'POST' && Division::create($request->all())){
+        if ($request->method === 'POST' && Division::create($request->all())) {
             app()->route->redirect('/discipline');
         }
         return new View('site.moder', ['users' => $users, 'discipline' => $discipline, 'types' => $types]);
@@ -39,15 +41,25 @@ class Moder
             ], [
                 'required' => 'Поле :field пусто'
             ]);
-            if ($validator->fails()) {
+            $fileUploader = new FileUploader($_FILES['image']);
+
+            $destination = 'uploads';
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+            //Макс размер в битах, 2.5Мб в данный момент
+            $maxSize = 20971520;
+
+            $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
+            if ($validator->fails() || is_array($newFileName)) {
                 app()->route->redirect('/moder');
                 return new View('site.moder',
                     ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-            }
-            if (Discipline::create($request->all())) {
+            } else {
+                DB::table('disciplines')->insert([
+                    'name' => $_POST['name'],
+                    'image' => $destination . '/' . $newFileName,
+                ]);
                 app()->route->redirect('/discipline');
             }
-
 
         }
         return (new View('site.moder'));

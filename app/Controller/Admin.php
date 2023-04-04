@@ -32,7 +32,6 @@ class Admin
                 'id_position' => ['required'],
                 'id_division' => ['required'],
                 'role' => ['required'],
-                'avatar' => ['required']
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально'
@@ -46,21 +45,6 @@ class Admin
             if (User::create($request->all())) {
                 app()->route->redirect('/workers');
             }
-
-            $request = app('request');
-            if ($request->hasfile('avatar')) {
-                $avatar = $request->file('avatar');
-                $filename = time() . '.' . $avatar->getClientOriginalExtension();
-
-                //Implement check here to create directory if not exist already
-                //Сделал тест ресайза и папки
-
-                Image::make($avatar)->resize(300, 300)->save(public_path('public/uploads/' . $filename));
-            }
-
-            return User::create([
-                'avatar' => !empty($filename) ? $filename : 'default_avatar.png',
-            ]);
         }
         return new View('site.signup', ['positions' => $positions, 'divisions' => $divisions, 'sexes' => $sexes]);
     }

@@ -5,6 +5,7 @@
     <?php
     echo '<div class="card" style="width: 18rem;">' . '<div class="card-body">';
     echo '<h5 class="card-title">' . $dis->id . ' | ' . $dis->name . '</h5>';
+    echo "<img href=\"$dis->image\">";
     echo "<a href=/pop-it-mvc/dis/{$dis->id}/delete><button class='btn btn-dark'>Удалить</button></a>";
     echo '</div>' . '</div>';
     ?>

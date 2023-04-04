@@ -11,7 +11,7 @@ class Discipline extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-
+        'image'
     ];
 
 
