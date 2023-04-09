@@ -1,5 +1,6 @@
 <h2>Регистрация нового пользователя</h2>
 <h3><?= $message ?? ''; ?></h3>
+
 <form method="post">
     <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
     <div class="form-group">
@@ -31,26 +32,26 @@
     </div>
     <div class="form-group">
         <label>Должность
-        <select class="form-select" aria-label="Default select example" name="id_position">
-            <?php
-            foreach ($positions as $position) {
-                echo "<option value=\"$position->id\">" . $position->name . '</option>';
+            <select class="form-select" aria-label="Default select example" name="id_position">
+                <?php
+                foreach ($positions as $position) {
+                    echo "<option value=\"$position->id\">" . $position->name . '</option>';
 
-            }
-            ?>
-        </select>
+                }
+                ?>
+            </select>
         </label>
     </div>
     <div class="form-group">
         <label>Подразделение
-        <select class="form-select" aria-label="Default select example" name="id_division">
-            <?php
-            foreach ($divisions as $division) {
-                echo "<option value=\"$division->id\">" . $division->name . '</option>';
+            <select class="form-select" aria-label="Default select example" name="id_division">
+                <?php
+                foreach ($divisions as $division) {
+                    echo "<option value=\"$division->id\">" . $division->name . '</option>';
 
-            }
-            ?>
-        </select>
+                }
+                ?>
+            </select>
         </label>
     </div>
     <div class="form-group">

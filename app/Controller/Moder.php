@@ -13,7 +13,6 @@ use Model\User;
 use Model\WorkerDiscipline;
 use Src\Validator\Validator;
 use Src\View;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class Moder
@@ -24,35 +23,46 @@ class Moder
         $users = User::all();
         $discipline = Discipline::all();
         $types = Type::all();
-        if ($request->method === 'POST' && WorkerDiscipline::create($request->all())) {
-            app()->route->redirect('/discipline');
-        }
-        if ($request->method === 'POST' && Division::create($request->all())) {
-            app()->route->redirect('/discipline');
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'id_worker' => ['rowUnique:worker_disciplines,id_worker,id_discipline'],
+
+            ], [
+                'rowUnique' => 'Строка :field должна быть уникальной'
+            ]);
+            if ($validator->fails()) {
+                return new View('site.moder',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'users' => $users, 'discipline' => $discipline, 'types' => $types]);
+            }
+            if (WorkerDiscipline::create($request->all())) {
+                app()->route->redirect('/discipline');
+            }
         }
         return new View('site.moder', ['users' => $users, 'discipline' => $discipline, 'types' => $types]);
     }
 
     public function addDiscipline(Request $request): string
     {
+        $users = User::all();
+        $discipline = Discipline::all();
+        $types = Type::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
                 'name' => ['required'],
+                'image' => ['fileSize', 'fileType'],
             ], [
-                'required' => 'Поле :field пусто'
+                'required' => 'Поле :field пусто',
+                'fileSize' => 'Поле :field слишком большой',
+                'fileType' => 'Поле :field формат файла не подходит'
             ]);
             $fileUploader = new FileUploader($_FILES['image']);
 
             $destination = 'uploads';
-            $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-            //Макс размер в битах, 2.5Мб в данный момент
-            $maxSize = 20971520;
 
-            $newFileName = $fileUploader->upload($destination, $allowedTypes, $maxSize);
+            $newFileName = $fileUploader->upload($destination);
             if ($validator->fails() || is_array($newFileName)) {
-                app()->route->redirect('/moder');
                 return new View('site.moder',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'users' => $users, 'discipline' => $discipline, 'types' => $types]);
             } else {
                 DB::table('disciplines')->insert([
                     'name' => $_POST['name'],
@@ -67,6 +77,9 @@ class Moder
 
     public function addDivision(Request $request): string
     {
+        $users = User::all();
+        $discipline = Discipline::all();
+        $types = Type::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
                 'name' => ['required'],
@@ -75,9 +88,8 @@ class Moder
                 'required' => 'Поле :field пусто'
             ]);
             if ($validator->fails()) {
-                app()->route->redirect('/moder');
                 return new View('site.moder',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'users' => $users, 'discipline' => $discipline, 'types' => $types]);
             }
             if (Division::create($request->all())) {
                 app()->route->redirect('/discipline');
@@ -88,6 +100,9 @@ class Moder
 
     public function addType(Request $request): string
     {
+        $users = User::all();
+        $discipline = Discipline::all();
+        $types = Type::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
                 'name' => ['required'],
@@ -95,9 +110,8 @@ class Moder
                 'required' => 'Поле :field пусто'
             ]);
             if ($validator->fails()) {
-                app()->route->redirect('/moder');
                 return new View('site.moder',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'users' => $users, 'discipline' => $discipline, 'types' => $types]);
             }
             if (Type::create($request->all())) {
                 app()->route->redirect('/moder');
@@ -108,6 +122,9 @@ class Moder
 
     public function addPosition(Request $request): string
     {
+        $users = User::all();
+        $discipline = Discipline::all();
+        $types = Type::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
                 'name' => ['required'],
@@ -115,9 +132,8 @@ class Moder
                 'required' => 'Поле :field пусто'
             ]);
             if ($validator->fails()) {
-                app()->route->redirect('/moder');
                 return new View('site.moder',
-                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE), 'users' => $users, 'discipline' => $discipline, 'types' => $types]);
             }
             if (Position::create($request->all())) {
                 app()->route->redirect('/signup');

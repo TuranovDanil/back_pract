@@ -21,20 +21,22 @@ class Admin
         $sexes = Sex::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'name' => ['required'],
+                'name' => ['required', 'languageRu'],
                 'login' => ['required', 'unique:users,login'],
                 'password' => ['required'],
-                'surname' => ['required'],
-                'patronymic' => ['required'],
+                'surname' => ['required', 'languageRu'],
+                'patronymic' => ['required', 'languageRu'],
                 'id_sex' => ['required'],
-                'birth' => ['required'],
+                'birth' => ['required', 'birthData'],
                 'address' => ['required'],
                 'id_position' => ['required'],
                 'id_division' => ['required'],
                 'role' => ['required'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'languageRu' => 'Поле :field должно содержать только кириллицу',
+                'birthData' => 'Поле :field не может быть в будущем',
             ]);
 
             if ($validator->fails()) {
