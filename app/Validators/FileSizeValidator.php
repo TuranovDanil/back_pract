@@ -11,7 +11,6 @@ class FileSizeValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        // var_dump($this->value['size']);die;
         return (bool)!($this->value['size'] > 20971520);
     }
 }

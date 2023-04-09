@@ -49,7 +49,7 @@ class Moder
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
                 'name' => ['required'],
-                'image' => ['fileSize', 'fileType'],
+                'image' => ['required', 'fileSize', 'fileType'],
             ], [
                 'required' => 'Поле :field пусто',
                 'fileSize' => 'Поле :field слишком большой',

@@ -11,7 +11,6 @@ class FileTypeValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        // var_dump($this->value['type']);die;
         return (bool)(in_array($this->value['type'], ['image/jpeg', 'image/png', 'image/jpg']));
     }
 }
